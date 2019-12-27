@@ -1,0 +1,54 @@
+#app {
+  color: #434449;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-reach-dialog-content] {
+  max-width: 450px;
+  border-radius: 3px;
+  padding-bottom: 3.5em;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+  margin: 20vh auto;
+}
+@media (max-width: 991px) {
+  [data-reach-dialog-content] {
+    width: 100%;
+    margin: 10vh auto;
+  }
+}
+
+#app {
+  color: #434449;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+textarea,
+input {
+  border: 1px solid #f1f1f4;
+  background: #f1f2f7;
+  padding: 8px 12px;
+}
+
+button,
+input {
+  border-radius: 3px;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
