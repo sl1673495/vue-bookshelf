@@ -208,8 +208,8 @@ export const useAsync = (func: () => Promise<any>) => {
 };
 ```
 
-可以看出，这个hook就是把外部传入的异步方法在onMounted声明周期里调用  
-并且在调用的前后通过ref
+可以看出，这个hook的作用就是把外部传入的异步方法`func`在`onMounted`生命周期里调用  
+并且在调用的前后改变响应式变量`loading`的值，并且把loading返回出去，这样loading就可以在模板中自由使用，从而让loading这个变量和页面的渲染关联起来。
 
 Vue3的hooks让我们可以在组件外部调用Vue的所有能力，  
 包括onMounted,ref, reactive等等，  
@@ -284,3 +284,29 @@ export const useBookListInject = () => {
 代码不再按照state, mutation和actions区分，而是按照逻辑关注点分隔，  
 
 这样的好处显而易见，我们想要维护某一个功能的时候更加方便的能找到所有相关的逻辑，而不再是在选项和文件之间跳来跳去。
+
+## 总结
+本文相关的所有代码都放在  
+
+https://github.com/sl1673495/vue-bookshelf  
+
+这个仓库里了，感兴趣的同学可以去看，  
+
+在之前刚看到composition-api，还有尤大对于Vue3的Hook和React的Hook的区别对比的时候，我对于Vue3的Hook甚至有了一些盲目的崇拜，但是真正使用下来发现，虽然不需要我们再去手动管理依赖项，但是由于Vue的响应式机制始终需要非原始的数据类型来保持响应式，所带来的一些心智负担也是需要注意和适应的。  
+
+举个简单的例子
+```ts
+  setup() {
+    const loading = useAsync(async () => {
+      await getBooks();
+    });
+
+    return {
+      isLoading: !!loading.value
+    }
+  },
+```
+
+这一段看似符合直觉的代码，却会让`isLoading`这个变量失去响应式，但是这也是性能和内部实现设计的一些取舍，我们选择了Vue，也需要去学习和习惯它。  
+
+总体来说，Vue3虽然也有一些自己的缺点，但是带给我们React Hook几乎所有的好处，而且还规避了React Hook的一些让人难以理解坑，在某些方面还优于它，期待Vue3正式版的发布！
