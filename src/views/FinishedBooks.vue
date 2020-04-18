@@ -7,20 +7,20 @@
 </template>
 
 <script lang="ts">
-import { createComponent, computed } from '@vue/composition-api';
-import Books from '@/components/Books.vue';
-import { useBookListInject } from '@/context';
+import { createComponent, computed } from "@vue/composition-api";
+import Books from "@/components/Books.vue";
+import { useBookListInject } from "@/context";
 
 export default createComponent({
-  name: 'finishedBooks',
+  name: "finishedBooks",
   setup() {
     const { finishedBooks } = useBookListInject();
     const isEmpty = computed(() => !finishedBooks.value.length);
     return { finishedBooks, isEmpty };
   },
   components: {
-    Books,
-  },
+    Books
+  }
 });
 </script>
 

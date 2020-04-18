@@ -1,11 +1,13 @@
-import { provide, inject, computed, ref, Ref } from '@vue/composition-api';
-import { Book, Books } from '@/types';
+import { provide, inject, computed, ref, Ref } from "@vue/composition-api";
+import { Book, Books } from "@/types";
 
 type BookContext = {
   books: Ref<Books>;
   setBooks: (value: Books) => void;
   finishedBooks: Ref<Books>;
   addFinishedBooks: (book: Book) => void;
+  removeFinishedBooks: (book: Book) => void;
+  hasReadedBook: (book: Book) => boolean;
   booksAvaluable: Ref<Books>;
 };
 
@@ -24,7 +26,9 @@ export const useBookListProvide = () => {
     }
   };
   const removeFinishedBooks = (book: Book) => {
-    const removeIndex = finishedBooks.value.findIndex(({ id }) => id === book.id);
+    const removeIndex = finishedBooks.value.findIndex(
+      ({ id }) => id === book.id
+    );
     if (removeIndex !== -1) {
       finishedBooks.value.splice(removeIndex, 1);
     }
@@ -32,8 +36,13 @@ export const useBookListProvide = () => {
 
   // 可选图书
   const booksAvaluable = computed(() => {
-    return books.value.filter(book => !finishedBooks.value.find(({ id }) => id === book.id));
+    return books.value.filter(
+      book => !finishedBooks.value.find(({ id }) => id === book.id)
+    );
   });
+
+  // 是否已阅
+  const hasReadedBook = (book: Book) => finishedBooks.value.includes(book);
 
   provide(BookSymbol, {
     books,
@@ -41,7 +50,8 @@ export const useBookListProvide = () => {
     finishedBooks,
     addFinishedBooks,
     removeFinishedBooks,
-    booksAvaluable,
+    hasReadedBook,
+    booksAvaluable
   });
 };
 

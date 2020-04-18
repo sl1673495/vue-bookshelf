@@ -1,31 +1,44 @@
 <template>
-  <button @click="handleFinish" class="status-button">阅</button>
+  <button v-if="hasReaded" @click="removeFinish" class="status-button">
+    删
+  </button>
+  <button v-else @click="handleFinish" class="status-button">阅</button>
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
-import { useBookListInject } from '@/context';
-import { Book } from '../types';
+import { createComponent } from "@vue/composition-api";
+import { useBookListInject } from "@/context";
+import { Book } from "../types";
 
 interface Props {
   book: Book;
 }
 export default createComponent({
   props: {
-    book: Object,
+    book: Object
   },
   setup(props: Props) {
     const { book } = props;
-    const { addFinishedBooks } = useBookListInject();
+    const {
+      addFinishedBooks,
+      removeFinishedBooks,
+      hasReadedBook
+    } = useBookListInject();
 
     const handleFinish = () => {
       addFinishedBooks(book);
     };
 
+    const removeFinish = () => {
+      removeFinishedBooks(book);
+    };
+
     return {
       handleFinish,
+      removeFinish,
+      hasReaded: hasReadedBook(book)
     };
-  },
+  }
 });
 </script>
 

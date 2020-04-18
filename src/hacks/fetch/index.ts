@@ -1,4 +1,4 @@
-import books from '@/hacks/data/books';
+import books from "@/hacks/data/books";
 
 const mockBooks = books;
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

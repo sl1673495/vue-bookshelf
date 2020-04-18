@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
-import Books from '@/components/Books.vue';
-import { useAsync } from '@/hooks';
-import { getBooks } from '@/hacks/fetch';
-import { useBookListInject } from '@/context';
+import { createComponent } from "@vue/composition-api";
+import Books from "@/components/Books.vue";
+import { useAsync } from "@/hooks";
+import { getBooks } from "@/hacks/fetch";
+import { useBookListInject } from "@/context";
 
 export default createComponent({
-  name: 'books',
+  name: "books",
   setup() {
     const { books, setBooks, booksAvaluable } = useBookListInject();
 
@@ -22,8 +22,8 @@ export default createComponent({
     return { booksAvaluable, loading };
   },
   components: {
-    Books,
-  },
+    Books
+  }
 });
 </script>
 

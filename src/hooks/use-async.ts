@@ -1,4 +1,4 @@
-import { ref, onMounted } from '@vue/composition-api';
+import { ref, onMounted } from "@vue/composition-api";
 
 export const useAsync = (func: () => Promise<any>) => {
   const loading = ref(false);

@@ -5,7 +5,7 @@
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      position: 'relative',
+      position: 'relative'
     }"
   >
     <a
@@ -17,12 +17,12 @@
         border: `1px solid ${colors.gray20}`,
         color: colors.text,
         padding: '1.25em',
-        borderRadius: '3px',
+        borderRadius: '3px'
       }"
     >
       <div
         :style="{
-          width: 140,
+          width: 140
         }"
       >
         <img
@@ -38,7 +38,7 @@
               :style="{
                 fontSize: '1.25em',
                 margin: '0',
-                color: colors.indigo,
+                color: colors.indigo
               }"
             >
               {{ book.title }}
@@ -49,7 +49,7 @@
               :style="{
                 marginTop: '0.4em',
                 fontStyle: 'italic',
-                fontSize: '0.85em',
+                fontSize: '0.85em'
               }"
             >
               {{ book.author }}
@@ -65,27 +65,27 @@
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { createComponent } from "@vue/composition-api";
 // @ts-ignore
-import harryCover from '@/assets/harry.png';
-import StatusButtons from './StatusButtons.vue';
+import harryCover from "@/assets/harry.png";
+import StatusButtons from "./StatusButtons.vue";
 
 export default createComponent({
   setup() {
     return {
-      harryCover,
+      harryCover
     };
   },
-  name: 'book',
+  name: "book",
   props: {
     book: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   components: {
-    StatusButtons,
-  },
+    StatusButtons
+  }
 });
 </script>
 
