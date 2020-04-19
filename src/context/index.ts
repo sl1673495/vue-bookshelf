@@ -1,7 +1,7 @@
-import { useBookListProvide, useBookListInject } from "./books";
+import { useBookListProvide, useBookListInject } from "./books"
 
-export { useBookListInject };
+export { useBookListInject }
 
 export const useProvider = () => {
-  useBookListProvide();
-};
+  useBookListProvide()
+}

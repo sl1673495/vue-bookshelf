@@ -10,29 +10,29 @@
 </template>
 
 <script lang="ts">
-import { computed, createComponent } from "@vue/composition-api";
-import { useBookListInject } from "@/context";
-import { routeMaps } from "@/router";
+import { computed, createComponent } from "@vue/composition-api"
+import { useBookListInject } from "@/context"
+import { routeMaps } from "@/router"
 
 export default createComponent({
   setup(props, { root }) {
-    const { booksAvaluable, finishedBooks } = useBookListInject();
+    const { booksAvaluable, finishedBooks } = useBookListInject()
 
     // 根据路由名确定取值策略
     const routeNameGetCountMap = {
       [routeMaps.all.name]: () => booksAvaluable.value.length,
       [routeMaps.finished.name]: () => finishedBooks.value.length
-    };
+    }
 
     const bookCount = computed(() => {
-      return routeNameGetCountMap[root.$route.name!]();
-    });
+      return routeNameGetCountMap[root.$route.name!]()
+    })
 
     return {
       bookCount
-    };
+    }
   }
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,9 +1,9 @@
-import books from "@/hacks/data/books";
+import books from "@/hacks/data/books"
 
-const mockBooks = books;
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const mockBooks = books
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const getBooks = async () => {
-  await wait(1000);
-  return mockBooks;
-};
+  await wait(1000)
+  return mockBooks
+}

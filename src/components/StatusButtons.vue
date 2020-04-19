@@ -6,40 +6,40 @@
 </template>
 
 <script lang="ts">
-import { createComponent } from "@vue/composition-api";
-import { useBookListInject } from "@/context";
-import { Book } from "../types";
+import { createComponent } from "@vue/composition-api"
+import { useBookListInject } from "@/context"
+import { Book } from "../types"
 
 interface Props {
-  book: Book;
+  book: Book
 }
 export default createComponent({
   props: {
     book: Object
   },
   setup(props: Props) {
-    const { book } = props;
+    const { book } = props
     const {
       addFinishedBooks,
       removeFinishedBooks,
       hasReadedBook
-    } = useBookListInject();
+    } = useBookListInject()
 
     const handleFinish = () => {
-      addFinishedBooks(book);
-    };
+      addFinishedBooks(book)
+    }
 
     const removeFinish = () => {
-      removeFinishedBooks(book);
-    };
+      removeFinishedBooks(book)
+    }
 
     return {
       handleFinish,
       removeFinish,
       hasReaded: hasReadedBook(book)
-    };
+    }
   }
-});
+})
 </script>
 
 <style scoped>

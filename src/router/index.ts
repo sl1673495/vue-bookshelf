@@ -1,9 +1,9 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import AllBooks from "@/views/AllBooks.vue";
-import FinishedBooks from "@/views/FinishedBooks.vue";
+import Vue from "vue"
+import VueRouter from "vue-router"
+import AllBooks from "@/views/AllBooks.vue"
+import FinishedBooks from "@/views/FinishedBooks.vue"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 export const routeMaps = {
   all: {
@@ -14,7 +14,7 @@ export const routeMaps = {
     name: "finished",
     path: "/finished"
   }
-};
+}
 
 const routes = [
   {
@@ -25,11 +25,11 @@ const routes = [
     ...routeMaps.finished,
     component: FinishedBooks
   }
-];
+]
 
 // @ts-ignore
 const router = new VueRouter({
   routes
-});
+})
 
-export default router;
+export default router

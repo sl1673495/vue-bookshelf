@@ -28,28 +28,28 @@ export default createComponent({
     const pageSize = 10
     const { bindings, data: pagedBooks } = usePages(
       () => props.books as Books,
-      { pageSize },
+      { pageSize }
     )
 
     return {
       bindings,
       pagedBooks,
-      pageSize,
+      pageSize
     }
   },
   props: {
     books: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     loading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   components: {
-    Book,
-  },
+    Book
+  }
 })
 </script>
 

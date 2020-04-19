@@ -65,16 +65,16 @@
 </template>
 
 <script lang="ts">
-import { createComponent } from "@vue/composition-api";
+import { createComponent } from "@vue/composition-api"
 // @ts-ignore
-import harryCover from "@/assets/harry.png";
-import StatusButtons from "./StatusButtons.vue";
+import harryCover from "@/assets/harry.png"
+import StatusButtons from "./StatusButtons.vue"
 
 export default createComponent({
   setup() {
     return {
       harryCover
-    };
+    }
   },
   name: "book",
   props: {
@@ -86,7 +86,7 @@ export default createComponent({
   components: {
     StatusButtons
   }
-});
+})
 </script>
 
 <style lang="sass"></style>
