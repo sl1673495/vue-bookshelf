@@ -7,33 +7,29 @@ export interface PageOption {
 export function usePages<T>(watchCallback: () => T[], pageOption?: PageOption) {
   const { pageSize = 10 } = pageOption || {};
 
+  const rawData = ref<T[]>([]);
   const data = ref<T[]>([]);
 
   // 提供给el-pagination组件的参数
-  const elPagenationBindings = reactive({
+  const bindings = reactive({
     current: 1,
-    currentChange: (currnetPage: number) => {}
+    currentChange: (currnetPage: number) => {
+      data.value = sliceData(rawData.value, currnetPage);
+    }
   });
 
   // 根据页数切分数据
-  const sliceData = (currentData: T[], currentPage: number) => {
-    return currentData.slice(
-      (currentPage - 1) * pageSize,
-      currentPage * pageSize
-    );
+  const sliceData = (fullData: T[], currentPage: number) => {
+    return fullData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   };
 
   watch(watchCallback, values => {
-    const currentChange = (currnetPage: number) => {
-      elPagenationBindings.current = currnetPage;
-      data.value = sliceData(values, currnetPage);
-    };
-    currentChange(1);
-    elPagenationBindings.currentChange = currentChange;
+    rawData.value = values;
+    bindings.currentChange(1);
   });
 
   return {
     data,
-    elPagenationBindings
+    bindings
   };
 }

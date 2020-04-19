@@ -8,8 +8,8 @@
         v-if="pagedBooks.length"
         :page-size="pageSize"
         :total="books.length"
-        :current="elPagenationBindings.current"
-        @current-change="elPagenationBindings.currentChange"
+        :current="bindings.current"
+        @current-change="bindings.currentChange"
       />
     </section>
     <slot name="tips"></slot>
@@ -17,40 +17,40 @@
 </template>
 
 <script lang="ts">
-import { createComponent } from "@vue/composition-api";
-import { usePages } from "@/hooks";
-import { Books } from "@/types";
-import Book from "./Book.vue";
+import { createComponent } from "@vue/composition-api"
+import { usePages } from "@/hooks"
+import { Books } from "@/types"
+import Book from "./Book.vue"
 
 export default createComponent({
   name: "books",
   setup(props) {
-    const pageSize = 10;
-    const { elPagenationBindings, data: pagedBooks } = usePages(
+    const pageSize = 10
+    const { bindings, data: pagedBooks } = usePages(
       () => props.books as Books,
-      { pageSize }
-    );
+      { pageSize },
+    )
 
     return {
-      elPagenationBindings,
+      bindings,
       pagedBooks,
-      pageSize
-    };
+      pageSize,
+    }
   },
   props: {
     books: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
-    Book
-  }
-});
+    Book,
+  },
+})
 </script>
 
 <style>
