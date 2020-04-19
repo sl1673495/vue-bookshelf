@@ -19,8 +19,8 @@ export function usePages<T>(watchCallback: () => T[], pageOption?: PageOption) {
   });
 
   // 根据页数切分数据
-  const sliceData = (fullData: T[], currentPage: number) => {
-    return fullData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const sliceData = (rawData: T[], currentPage: number) => {
+    return rawData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   };
 
   watch(watchCallback, values => {
